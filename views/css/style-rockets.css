@@ -1,0 +1,15 @@
+body { 
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+.container {
+    align-items: center;
+    margin-top: 50px;
+}
+.card img { 
+    height: 400px;
+}
+.card {
+    margin-bottom: 30px;
+}

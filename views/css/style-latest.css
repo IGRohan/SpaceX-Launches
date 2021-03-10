@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body { 
+    font-family: 'Montserrat', sans-serif;
+}
+.launch {
+    padding-left: 30px;
+    padding-top: 20px;
+}
+.rocket {
+    padding-left: 30px;
+    padding-top: 20px;
+}
+.gallery {
+    padding-left: 30px;
+    padding-top: 20px;
+    width: 80%;
+    height: 80%;
+}
+.card:hover {
+    background-color: whitesmoke;
+    transition: 0.25s ease-in;
+}
+.rocket img {
+    width: 300px;
+    height: 300px;
+}

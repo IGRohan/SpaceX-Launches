@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+.container {
+    align-items: center;
+    margin-top: 50px;
+}
+.card img { 
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+}
+.card:hover {
+    background-color: whitesmoke;
+    transition: 0.25s ease-in-out;
+}
+.card {
+    margin-bottom: 30px;
+}

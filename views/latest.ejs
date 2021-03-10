@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= sitetitle %> </title>
+    <!-- Bootstrap v5.0 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style-latest.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">SpaceX Info</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/rockets">Rockets</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">LaunchPads</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Capsules</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Launches
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="/latest">Latest Launch</a></li>
+                  <li><a class="dropdown-item" href="/upcoming">Upcoming Launches</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+    <section class="launch">
+      <h1>Latest Launch</h1>
+      <div class="card" style="width: 90%;">
+        <div class="card-body">
+          <h5 class="card-title"><%= latest.name %> </h5>
+          <p class="card-text"><%= latest.details %> </p>
+            <% if(latest.success) { %>
+              <span class="badge bg-success">Success</span>
+            <% } %>
+            <% if(!latest.success) { %>
+              <span class="badge bg-danger">Failed</span>
+            <% } %> <br />
+          <a class="btn btn-outline-primary btn-sm mt-2" href=<%= latest.links.webcast %>>Watch</a>
+        </div>
+      </div>
+    </section>
+    <section class="rocket">
+      <h1>Rocket</h1>
+      <div class="card mb-3" style="width: 90%;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src=<%= getRocket(latest.rocket).flickr_images[0] %>  alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"><%= getRocket(latest.rocket).name %> </h5>
+              <ul class="list-group">
+                <li class="list-group-item"><strong>Height:</strong> <%= getRocket(latest.rocket).height.meters %>m </li>
+                <li class="list-group-item"><strong>Payload to LEO:</strong> <%= getRocket(latest.rocket).payload_weights[0].kg %>kg </li>
+                <li class="list-group-item"><strong>Cost Per Launch:</strong> $<%= getRocket(latest.rocket).cost_per_launch.toLocaleString() %> </li>
+                <li class="list-group-item"><strong>Stages:</strong> <%= getRocket(latest.rocket).stages %> </li>
+                <li class="list-group-item"><strong>Engines:</strong> <%= getRocket(latest.rocket).engines.number %> </li>
+              </ul>
+              <a class="btn btn-outline-primary" href=<%= getRocket(latest.rocket).wikipedia %> >More Info</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="gallery">
+      <h1><%= getRocket(latest.rocket).name %> </h1>
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src=<%= getRocket(latest.rocket).image %>  class="d-block w-100">
+          </div>
+          <% getRocket(latest.rocket).flickr_images.map(image => { %>
+            <div class="carousel-item">
+              <img src=<%= image %>  class="d-block w-100">
+            </div>
+          <% }) %> 
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </section>
+    
+
+    <!-- Bootstrap v5.0 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</body>
+</html>
